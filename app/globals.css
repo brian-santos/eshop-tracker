@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: #0a0a0c;
+  color: #efeff2;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
+}
+
+body {
+  min-height: 100dvh;
+  /* Subtle warm gradient backdrop — not a flat black */
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255, 91, 58, 0.06), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(58, 255, 161, 0.03), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Fine-grain film texture overlay — editorial feel without being heavy */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  z-index: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+main,
+header,
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Thin horizontal rules — used for editorial dividers */
+.rule {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(239, 239, 242, 0.14) 20%,
+    rgba(239, 239, 242, 0.14) 80%,
+    transparent
+  );
+}
+
+/* Inputs + selects — flat, monospaced, restrained */
+.input,
+.select {
+  @apply w-full bg-ink-900 border border-ink-700 rounded-md px-3 py-2.5 text-ink-100 font-mono text-sm;
+  @apply focus:outline-none focus:border-flame focus:ring-1 focus:ring-flame/30;
+  @apply placeholder:text-ink-500;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 font-medium text-sm;
+  @apply transition-colors disabled:opacity-40 disabled:cursor-not-allowed;
+}
+.btn-primary {
+  @apply btn bg-flame text-ink-950 hover:bg-flame/90;
+}
+.btn-ghost {
+  @apply btn bg-transparent text-ink-200 border border-ink-700 hover:border-ink-500;
+}
+.btn-danger {
+  @apply btn bg-transparent text-flame hover:bg-flame/10;
+}
+
+/* Sale badge */
+.sale-pill {
+  @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider;
+  background: rgba(212, 255, 58, 0.12);
+  color: #d4ff3a;
+  border: 1px solid rgba(212, 255, 58, 0.3);
+}
+
+.alert-pill {
+  @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider;
+  background: rgba(255, 91, 58, 0.14);
+  color: #ff5b3a;
+  border: 1px solid rgba(255, 91, 58, 0.3);
+}
+
+/* Scrollbar polish for desktop */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #232329; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a44; }
