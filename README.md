@@ -14,7 +14,7 @@ A self-hosted Nintendo eShop price tracker that pushes alerts straight to your i
 
 ### 1. Click to deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FYOUR_GITHUB_USERNAME%2Feshop-tracker&integration-ids=oac_V3R1GIpkoJorr6fqyiwdhl17&project-name=eshop-tracker&repository-name=eshop-tracker)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fbrian-santos%2Feshop-tracker&integration-ids=oac_V3R1GIpkoJorr6fqyiwdhl17&project-name=eshop-tracker&repository-name=eshop-tracker)
 
 > ⚠️ After forking this repo, edit the button URL in your README to point at your fork. The integration ID above is for Upstash Redis — Vercel will prompt you to install and provision it with one click.
 
