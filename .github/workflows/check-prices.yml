@@ -1,0 +1,34 @@
+name: Check eShop prices
+
+on:
+  schedule:
+    # Every hour, on the hour, UTC.
+    # Edit this cron expression to change cadence.
+    - cron: "0 * * * *"
+  # Allow manual triggering from the Actions tab for testing.
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Trigger price check
+        env:
+          APP_URL: ${{ secrets.APP_URL }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          if [ -z "$APP_URL" ] || [ -z "$CRON_SECRET" ]; then
+            echo "::error::APP_URL and CRON_SECRET repo secrets must be set."
+            exit 1
+          fi
+          response=$(curl -sS -w "\n%{http_code}" \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            "$APP_URL/api/check-prices")
+          body=$(echo "$response" | head -n-1)
+          code=$(echo "$response" | tail -n1)
+          echo "HTTP $code"
+          echo "$body"
+          if [ "$code" -ne 200 ]; then
+            exit 1
+          fi
